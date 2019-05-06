@@ -4,18 +4,19 @@ import java.util.LinkedList;
 public class ContactNetAlt {
     int connectionThreshold = 5;
 
-    public int setThreshold(int connectionThreshold) {
-        return this.connectionThreshold = connectionThreshold;
-    }
-
     public ContactNetAlt() {
     }
 
+    /**
+     * A conversation takes place, adds the new amount value to the conversation,
+     * puts conversation in sender's neighbour list
+     * @param sender sender
+     * @param receiver receiver
+     */
     public void registerConversationAlt(Person sender, Person receiver) {
-        boolean alreadyExists = false;
         Conversation c = new Conversation(sender, receiver);
         if (sender.conversations.containsKey(c)) {
-            c.amount = sender.conversations.get(c).amount + 1;
+            c.amount = sender.conversations.get(c).amount + 1; //adds 1 to conversation amount
             sender.conversations.put(c, c);
         }
         else {
@@ -24,12 +25,18 @@ public class ContactNetAlt {
         }
     }
 
-    public boolean hasDirectConnectionAlt (Person p1, Person p2) {
+    /**
+     * returns whether person1 has close (direct) connection with a neighbour p2
+     * @param p1 one person
+     * @param p2 another person
+     * @return true if amount >= threshold, else false
+     */
+    public boolean hasCloseConnectionAlt(Person p1, Person p2) {
         Conversation c1 = new Conversation(p1, p2);
         Conversation c2 = new Conversation(p2, p1);
         try {
-            if (p1.conversations.get(c1).amount > connectionThreshold
-                    && p2.conversations.get(c2).amount > connectionThreshold) {
+            if (p1.conversations.get(c1).amount >= connectionThreshold
+                    && p2.conversations.get(c2).amount >= connectionThreshold) {
                 return true;
             }
         }
@@ -43,7 +50,7 @@ public class ContactNetAlt {
         LinkedList<Person> connections = new LinkedList<Person>();
         for (Conversation c : suspect.conversations.keySet()) {
             Person neighbour = c.receiver;
-            if (hasDirectConnectionAlt(suspect, neighbour)) {
+            if (hasCloseConnectionAlt(suspect, neighbour)) {
                 connections.add(neighbour);
             }
         }
@@ -51,10 +58,10 @@ public class ContactNetAlt {
     }
 
     /**
-     *
-     * @param suspect person we are finding connections for
-     * @param connections the current connections we know about - for initial method call use an empty set or null
-     * @return
+     * Finds connections with neighbours, and recursively runs the function on the neighbours' neighbours
+     * @param suspect person we are finding close connections for
+     * @param connections the current close connections we know about - for initial method call use an empty set or null
+     * @return list of all people the suspect has a close connection with
      */
     public LinkedList<Person> findIndirectConnectionsAlt(Person suspect, HashSet<Person> connections) {
         connections = connections == null ? new HashSet<Person>() : connections;
@@ -62,7 +69,7 @@ public class ContactNetAlt {
         for (Conversation c : suspect.conversations.keySet()) {
             Person neighbour = c.receiver;
             //do they have direct connection (above threshold)
-            if (hasDirectConnectionAlt(suspect, neighbour)) {
+            if (hasCloseConnectionAlt(suspect, neighbour)) {
                 //if the set doesn't already contain them
                 if (!connections.contains(neighbour)) {
                     //add them
@@ -73,7 +80,7 @@ public class ContactNetAlt {
                     /*
                     //think this part is unnecessary if the recursive call is moved outside of loop
                     for (Person indirectNeighbour : neighbour.neighbours) {
-                        if (hasDirectConnection(neighbour, indirectNeighbour)) {
+                        if (hasCloseConnection(neighbour, indirectNeighbour)) {
                             //recursive call on their neighbours
                             if (!connections.contains(indirectNeighbour)) {
                                 connections.add(indirectNeighbour);

@@ -1,16 +1,15 @@
-import java.util.Random;
-
 public class Main {
 
     public static void main(String[] args) {
+        System.out.println("initial - ");
         setup();
+        System.out.println("\n Alternative -");
         setupAlt();
     }
 
     public static void setup() {
         ContactNet c = new ContactNet();
-        c.setThreshold(10);
-        Random r = new Random();
+        c.connectionThreshold = 10;
 
         Person Per = new Person("Per");
         Person Pål = new Person("Pål");
@@ -34,8 +33,7 @@ public class Main {
 
     public static void setupAlt() {
         ContactNetAlt c = new ContactNetAlt();
-        c.setThreshold(5);
-        Random r = new Random();
+        c.connectionThreshold = 10;
 
         Person Per = new Person("Per");
         Person Pål = new Person("Pål");
