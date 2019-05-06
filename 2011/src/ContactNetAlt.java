@@ -1,10 +1,7 @@
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 
 public class ContactNetAlt {
-    HashMap<Conversation, Integer> conversations;
-    HashSet<Person> persons;
     int connectionThreshold = 5;
 
     public int setThreshold(int connectionThreshold) {
@@ -12,8 +9,6 @@ public class ContactNetAlt {
     }
 
     public ContactNetAlt() {
-        conversations = new HashMap<>();
-        persons = new HashSet<>();
     }
 
     public void registerConversationAlt(Person sender, Person receiver) {

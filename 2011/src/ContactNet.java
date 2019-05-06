@@ -5,7 +5,6 @@ import java.util.LinkedList;
 public class ContactNet {
 
     HashMap<Conversation, Integer> conversations;
-    HashSet<Person> persons;
     int connectionThreshold = 5;
 
     public int setThreshold(int connectionThreshold) {
@@ -14,7 +13,6 @@ public class ContactNet {
 
     public ContactNet() {
         conversations = new HashMap<>();
-        persons = new HashSet<>();
     }
 
     public void registerConversation(Person sender, Person receiver) {
