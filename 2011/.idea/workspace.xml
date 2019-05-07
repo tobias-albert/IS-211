@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7d94c57d-96a9-45f1-84b5-848422170892" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ContactNet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ContactNet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ContactNetAlt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ContactNetAlt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Conversation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Conversation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Person.java" afterDir="false" />
-    </list>
+    <list default="true" id="7d94c57d-96a9-45f1-84b5-848422170892" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -82,8 +74,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="79" selection-start-line="10" selection-start-column="79" selection-end-line="10" selection-end-column="79" />
+            <state relative-caret-position="357">
+              <caret line="30" column="9" lean-forward="true" selection-start-line="30" selection-start-column="9" selection-end-line="30" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -159,7 +151,7 @@
     <property name="ToolWindowStructure.ShowToolbar" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/PatientExam_New.rar" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../2013" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -211,19 +203,18 @@
       <workItem from="1557220208793" duration="1415000" />
       <workItem from="1557223987272" duration="4655000" />
       <workItem from="1557228884593" duration="1244000" />
-      <workItem from="1557237184790" duration="2361000" />
+      <workItem from="1557237184790" duration="2907000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33975000" />
+    <option name="totallyTimeSpent" value="34521000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49445677" visible="true" weight="0.2751678" />
-      <window_info id="Structure" order="1" sideWeight="0.50554323" side_tool="true" visible="true" weight="0.2751678" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49433428" visible="true" weight="0.2751678" />
+      <window_info id="Structure" order="1" sideWeight="0.5056657" side_tool="true" visible="true" weight="0.2751678" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -231,7 +222,7 @@
       <window_info id="Favorites" order="6" sideWeight="0.5028329" side_tool="true" weight="0.25973153" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3286119" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3611898" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3611898" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -326,8 +317,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="79" selection-start-line="10" selection-start-column="79" selection-end-line="10" selection-end-column="79" />
+        <state relative-caret-position="357">
+          <caret line="30" column="9" lean-forward="true" selection-start-line="30" selection-start-column="9" selection-end-line="30" selection-end-column="9" />
         </state>
       </provider>
     </entry>

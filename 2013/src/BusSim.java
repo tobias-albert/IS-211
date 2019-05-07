@@ -23,10 +23,10 @@ public class BusSim {
     }
 
     // Dette er motoren i simuleringen den behandler Event-ojektene i rekkefølge
-// basert på tidspunkt. Når et Event blir utført kan det bli lagt til nye.
+    // basert på tidspunkt. Når et Event blir utført kan det bli lagt til nye.
     public void run() {
         setup();
-        while ( /* opg 1b er det flere ubehandle Events igjen */) {
+        while (!events.isEmpty() /* opg 1b er det flere ubehandle Events igjen */) {
             Event e = nextEvent();
             t = e.getTime(); // hopp fram I tid til hendelsen
             e.happen(); // og utfør den…
@@ -34,9 +34,10 @@ public class BusSim {
     }
 
     private void setup() {
-    /* opg 1b */
-    // grovt forenklede eksempeldata – lag noen busser og sett 15 passasjerer
-    // på hver holdeplass
+        /* opg 1b */
+        // grovt forenklede eksempeldata – lag noen busser og sett 15 passasjerer
+        // på hver holdeplass
+        events = new PriorityQueue<>();//new EventComparator());
         for (int i = 0; i < NUM_BUSES; i++) {
             Bus b = new Bus(i);
             Event e = new Event(i * 30, b, 0);
@@ -47,7 +48,7 @@ public class BusSim {
 
     // Legg til et event-objekt på vent til det skal behandles
     public void addEvent(Event e) { // opg 1c
-
+        events.add(e);
     }
 
     // ta ut neste Event I tidsrekkefølge
