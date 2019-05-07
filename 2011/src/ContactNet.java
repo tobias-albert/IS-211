@@ -1,11 +1,8 @@
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
+import java.util.*;
 
 public class ContactNet {
 
     HashMap<Conversation, Integer> conversations;
-    int connectionThreshold = 5;
 
     public ContactNet() {
         conversations = new HashMap<>();
@@ -34,13 +31,14 @@ public class ContactNet {
      * returns whether person1 has close (direct) connection with a neighbour p2
      * @param p1 one person
      * @param p2 another person
+     * @param threshold amount of conversation required for close connection
      * @return true if amount >= threshold, else false
      */
-    public boolean hasCloseConnection(Person p1, Person p2) {
+    public boolean hasCloseConnection(Person p1, Person p2, int threshold) {
         Conversation c1 = new Conversation(p1, p2);
         Conversation c2 = new Conversation(p2, p1);
         try {
-            if (conversations.get(c1) >= connectionThreshold && conversations.get(c2) >= connectionThreshold) {
+            if (conversations.get(c1) >= threshold && conversations.get(c2) >= threshold) {
                 return true;
             }
         }
@@ -50,10 +48,16 @@ public class ContactNet {
         return false;
     }
 
-    public LinkedList<Person> findDirectConnections (Person suspect) {
+    /**
+     * Gets a person's close connections with their neighbours
+     * @param suspect person we are finding close connections for
+     * @param threshold amount of conversation required for close connection
+     * @return list of all people the suspect has a close connection with
+     */
+    public LinkedList<Person> findDirectConnections (Person suspect, int threshold) {
         LinkedList<Person> connections = new LinkedList<Person>();
         for (Person neighbour : suspect.neighbours) {
-            if (hasCloseConnection(suspect, neighbour)) {
+            if (hasCloseConnection(suspect, neighbour, threshold)) {
                 connections.add(neighbour);
             }
         }
@@ -61,50 +65,53 @@ public class ContactNet {
     }
 
     /**
-     * Finds connections with neighbours, and recursively runs the function on the neighbours' neighbours
+     * Finds connections with neighbours
      * @param suspect person we are finding close connections for
-     * @param connections the current close connections we know about - for initial method call use an empty set or null
+     * @param threshold the amount of interacts required for having a close connection
      * @return list of all people the suspect has a close connection with
      */
-    public LinkedList<Person> findIndirectConnections(Person suspect, HashSet<Person> connections) {
-        connections = connections == null ? new HashSet<Person>() : connections;
+    public LinkedList<Person> findIndirectConnections(Person suspect, int threshold) {
+        Person root = suspect; //redundant variable present to provide clarity
+        HashSet<Person> connections = new HashSet<Person>();
+        return getIndirectConnections(suspect, root, connections, threshold);
+    }
+
+    /**
+     * Gets connections with neighbours, and recursively runs the function on the neighbours' neighbours
+     * @param suspect person we are finding close connections for
+     * @param root the person the method was initially called on
+     * @param connections the current close connections we know about - for initial method call use an empty set or null
+     * @param threshold amount of conversations required for close connection
+     * @return list of all people the suspect has a close connection with
+     */
+    public LinkedList<Person> getIndirectConnections (Person suspect, Person root, HashSet<Person> connections, int threshold) {
         //for all neighbours
         for (Person neighbour : suspect.neighbours) {
+            //skips this neighbour if they are the root suspect
+            if (neighbour.equals(root)) continue;
             //do they have direct connection (above threshold)
-            if (hasCloseConnection(suspect, neighbour)) {
+            if (hasCloseConnection(suspect, neighbour, threshold)) {
                 //if the set doesn't already contain them
                 if (!connections.contains(neighbour)) {
                     //add them
                     connections.add(neighbour);
                     //check their neighbours
-                    connections.addAll(findIndirectConnections(neighbour, connections));
-
-                    /*
-                    //think this part is unnecessary if the recursive call is moved outside of loop
-                    for (Person indirectNeighbour : neighbour.neighbours) {
-                        if (hasCloseConnection(neighbour, indirectNeighbour)) {
-                            //recursive call on their neighbours
-                            if (!connections.contains(indirectNeighbour)) {
-                                connections.add(indirectNeighbour);
-                                connections.addAll(findIndirectConnections(indirectNeighbour, connections));
-                            }
-                        }
-                    }
-                    */
+                    connections.addAll(getIndirectConnections(neighbour, root, connections, threshold));
                 }
             }
         }
         return new LinkedList<Person>(connections);
     }
 
-    public void printDirect(Person suspect) {
+
+    public void printDirect(Person suspect, int threshold) {
         System.out.println("Direct connections for \"" + suspect.name + "\"");
-        System.out.println(findDirectConnections(suspect));
+        System.out.println(findDirectConnections(suspect, threshold));
     }
 
-    public void printIndirect(Person suspect) {
+    public void printIndirect(Person suspect, int threshold) {
         System.out.println("Indirect connections for \"" + suspect.name + "\"");
-        System.out.println(findIndirectConnections(suspect, new HashSet<Person>()));
+        System.out.println(findIndirectConnections(suspect, threshold));
     }
 
 

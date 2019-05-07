@@ -7,9 +7,13 @@ public class Main {
         setupAlt();
     }
 
+    /*
+    Graphical representation of graph can be found at github in the 2011 folder
+     */
+
     public static void setup() {
         ContactNet c = new ContactNet();
-        c.connectionThreshold = 10;
+        int threshold = 10;
 
         Person Per = new Person("Per");
         Person Pål = new Person("Pål");
@@ -18,22 +22,22 @@ public class Main {
         for (int i = 0; i < 10; i++) {
             c.registerConversation(Per, Pål);
             c.registerConversation(Pål, Per);
-            c.registerConversation(Per, Espen);
-            c.registerConversation(Espen, Per);
+            c.registerConversation(Pål, Espen);
+            c.registerConversation(Espen, Pål);
             c.registerConversation(Espen, Kongen);
             c.registerConversation(Kongen, Espen);
-            c.registerConversation(Kongen, Per);
-            c.registerConversation(Per, Espen);
+            c.registerConversation(Pål, Kongen);
+            c.registerConversation(Kongen, Pål);
         }
 
         Person person = Per;
-        c.printDirect(person);
-        c.printIndirect(person);
+        c.printDirect(person, threshold);
+        c.printIndirect(person, threshold);
     }
 
     public static void setupAlt() {
         ContactNetAlt c = new ContactNetAlt();
-        c.connectionThreshold = 10;
+        int threshold = 10;
 
         Person Per = new Person("Per");
         Person Pål = new Person("Pål");
@@ -42,17 +46,17 @@ public class Main {
         for (int i = 0; i < 10; i++) {
             c.registerConversationAlt(Per, Pål);
             c.registerConversationAlt(Pål, Per);
-            c.registerConversationAlt(Per, Espen);
-            c.registerConversationAlt(Espen, Per);
+            c.registerConversationAlt(Pål, Espen);
+            c.registerConversationAlt(Espen, Pål);
             c.registerConversationAlt(Espen, Kongen);
             c.registerConversationAlt(Kongen, Espen);
-            c.registerConversationAlt(Kongen, Per);
-            c.registerConversationAlt(Per, Espen);
+            c.registerConversationAlt(Pål, Kongen);
+            c.registerConversationAlt(Kongen, Pål);
         }
 
         Person person = Per;
-        c.printDirectAlt(person);
-        c.printIndirectAlt(person);
+        c.printDirectAlt(person, threshold);
+        c.printIndirectAlt(person, threshold);
     }
 
 }

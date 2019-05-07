@@ -3,8 +3,8 @@ import java.util.HashSet;
 
 public class Person {
     String name;
-    HashSet<Person> neighbours;
-    HashMap<Conversation, Conversation> conversations;
+    HashSet<Person> neighbours; //used by ContactNet
+    HashMap<Conversation, Integer> conversations; //used by ContactNetAlt
 
     public Person(String name) {
         this.name = name;
@@ -24,9 +24,9 @@ public class Person {
 
     @Override
     public boolean equals(Object o) {
-        if (o == this) return true;
-        if (o.getClass() != this.getClass()) return false;
-        Person p = (Person) o;
+        if (o == this) return true; //compared to self
+        if (o.getClass() != this.getClass()) return false; //compared to object of other class
+        Person p = (Person) o; //casts Object to type Person
         return p.toString().equals(this.toString());
     }
 }
