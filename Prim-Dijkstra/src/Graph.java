@@ -94,12 +94,11 @@ public class Graph {
 
     public HashMap<Node, Integer> dijkstraAll (Node root) {
         HashMap<Node, Integer> distances = new HashMap<>();
-        HashSet<Node> checked = new HashSet<>();
         for (Node n : nodes) {
-            HashMap<Node, Integer> nMap = dijkstra(root, n, distances, checked);
-            for (Node n2 : nMap.keySet()) {
-                int distance = nMap.get(n2);
-                if (distance != Integer.MAX_VALUE) {
+            HashMap<Node, Integer> tempMap = dijkstra(root, n, distances);
+            for (Node n2 : tempMap.keySet()) {
+                int distance = tempMap.get(n2);
+                if (distance < distances.get(n2)) {
                     distances.put(n2, distance);
                 }
             }
@@ -108,10 +107,11 @@ public class Graph {
     }
 
     public HashMap<Node, Integer> dijkstraOne (Node root, Node target) {
-        return dijkstra(root, target, new HashMap<Node, Integer>(), new HashSet<Node>());
+        return dijkstra(root, target, new HashMap<Node, Integer>());
     }
 
-    public HashMap<Node, Integer> dijkstra(Node root, Node target, HashMap<Node, Integer> lowestDistance, HashSet<Node> checked) {
+    public HashMap<Node, Integer> dijkstra(Node root, Node target, HashMap<Node, Integer> lowestDistance) {
+        HashSet<Node> checked = new HashSet<>();
         for (Node n : nodes) {
             lowestDistance.put(n, Integer.MAX_VALUE);
         }
@@ -139,7 +139,6 @@ public class Graph {
         }
         System.out.printf("Distance to target: %s from root %s is %d\n", target, root, lowestDistance.get(target));
         return lowestDistance;
-
     }
 
     public int prim(Node root) {
@@ -191,7 +190,7 @@ public class Graph {
 
         System.out.println("Breadth, checking children of: ");
         System.out.println("final checked list: " +traverseBreadth(robin));
-        System.out.println(dijkstraOne(robin, adrian));
+        //System.out.println(dijkstraOne(robin, adrian));
         System.out.println(dijkstraAll(robin));
         System.out.println(prim(robin));
     }
